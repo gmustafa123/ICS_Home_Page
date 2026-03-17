@@ -1,0 +1,58 @@
+[
+  {
+    "Product Image Url": "https://cater-choice-assets.s3.eu-west-2.amazonaws.com/storage/images/product/202312151702630679061168906756898800015043.jpg",
+    "Product Name": "R WHITE LEMONADE X1.5L",
+    "pack size": "12 X 1.5L",
+    "Delivery type": "Case: (Collection)",
+    "Price": "£9.99"
+  },
+  {
+    "Product Image Url": "https://cater-choice-assets.s3.eu-west-2.amazonaws.com/storage/images/product/202508211755772357713DSC06049.jpg",
+    "Product Name": "7UP BOTTLES GB 12 X 1.5L",
+    "pack size": "12x1.5l",
+    "Delivery type": "Case: (Collection)",
+    "Price": "£9.99"
+  },
+  {
+    "Product Image Url": "https://cater-choice-assets.s3.eu-west-2.amazonaws.com/storage/images/product/202508121754998204153DSC06971.jpg",
+    "Product Name": "7UP CANS GB X 330ML",
+    "pack size": "24x330ml",
+    "Delivery type": "Case: (Collection)",
+    "Price": "£7.55"
+  },
+  {
+    "Product Image Url": "https://cater-choice-assets.s3.eu-west-2.amazonaws.com/storage/images/product/202511121762962210646DSC05674.jpg",
+    "Product Name": "LEMON & LIME SLUSH SYRUP X 5L",
+    "pack size": "1 X 5L",
+    "Delivery type": "Single: (Collection)",
+    "Price": "£8.99"
+  },
+  {
+    "Product Image Url": "https://cater-choice-assets.s3.eu-west-2.amazonaws.com/storage/images/product/202511121762962871312DSC05694.jpg",
+    "Product Name": "TROPICAL SLUSH SYRUP X 5L",
+    "pack size": "1 X 5L",
+    "Delivery type": "Single: (Collection)",
+    "Price": "£8.99"
+  },
+  {
+    "Product Image Url": "https://cater-choice-assets.s3.eu-west-2.amazonaws.com/storage/images/product/202511121762961897488DSC05670.jpg",
+    "Product Name": "COLA SLUSH SYRUP X 5L",
+    "pack size": "1 X 5L",
+    "Delivery type": "Single: (Collection)",
+    "Price": "£8.99"
+  },
+  {
+    "Product Image Url": "https://cater-choice-assets.s3.eu-west-2.amazonaws.com/storage/images/product/202511121762962623776DSC05684.jpg",
+    "Product Name": "APPLE & MANGO SLUSH SYRUP X 5L",
+    "pack size": "1 X 5L",
+    "Delivery type": "Single: (Collection)",
+    "Price": "£8.99"
+  },
+  {
+    "Product Image Url": "https://cater-choice-assets.s3.eu-west-2.amazonaws.com/storage/images/product/202511201763643943877Sprite_No_Sugar_7L_Postmix_Bag_in_Box_(1).png",
+    "Product Name": "SPRITE ZERO BIB X 7L",
+    "pack size": "1 X 7L",
+    "Delivery type": "Single: (Collection)",
+    "Price": "£67.99"
+  }
+]
