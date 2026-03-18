@@ -111,11 +111,16 @@
       <!-- Mobile Slider (Shown only on Mobile) -->
       <div class="md:hidden relative" (touchstart)="handleTouchStart($event)" (touchend)="handleTouchEnd($event)">
         <div class="overflow-hidden">
-          <div class="flex transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]" 
-               [style.transform]="'translateX(' + (-currentWhyIndex * 100) + '%)'">
-            @for (item of whyChoose; track item.title) {
+          <div class="flex" 
+               [style.transition]="isWhyTransitioning ? 'all 1.2s cubic-bezier(0.19, 1, 0.22, 1)' : 'none'"
+               [style.transform]="'translate3d(' + (-currentWhyIndex * 100) + '%, 0, 0)'"
+               style="will-change: transform;">
+            @for (item of whyChoose.concat(whyChoose); track $index) {
               <div class="w-full flex-shrink-0 px-1">
-                <div class="glass-card p-3 rounded-[3rem] border border-gray-100 bg-white shadow-xl relative overflow-hidden">
+                <div class="p-3"> <!-- Added padding for better shadow visibility -->
+                   <div class="glass-card p-3 rounded-[3rem] border border-gray-100 bg-white shadow-xl relative overflow-hidden transition-all duration-700"
+                        [class.scale-90]="(currentWhyIndex % whyChoose.length) !== ($index % whyChoose.length)"
+                        [class.opacity-40]="(currentWhyIndex % whyChoose.length) !== ($index % whyChoose.length)">
                   <div class="w-16 h-16 rounded-2xl bg-red-700 flex items-center justify-center text-white text-2xl mb-8 shadow-lg shadow-red-700/20 relative z-10">
                     @if (item.icon === 'service') {
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -140,6 +145,7 @@
                   </div>
                 </div>
               </div>
+            </div>
             }
           </div>
         </div>
@@ -149,10 +155,10 @@
           @for (item of whyChoose; track item.title; let i = $index) {
             <button (click)="currentWhyIndex = i" 
                     class="h-2 rounded-full transition-all duration-500"
-                    [class.bg-red-700]="currentWhyIndex === i"
-                    [class.w-10]="currentWhyIndex === i"
-                    [class.bg-gray-200]="currentWhyIndex !== i"
-                    [class.w-4]="currentWhyIndex !== i">
+                    [class.bg-red-700]="(currentWhyIndex % whyChoose.length) === i"
+                    [class.w-10]="(currentWhyIndex % whyChoose.length) === i"
+                    [class.bg-gray-200]="(currentWhyIndex % whyChoose.length) !== i"
+                    [class.w-4]="(currentWhyIndex % whyChoose.length) !== i">
             </button>
           }
         </div>
@@ -178,9 +184,11 @@
       <div class="relative px-4 md:px-12">
         <!-- Slider Viewport -->
         <div class="overflow-hidden cursor-grab active:cursor-grabbing" (touchstart)="handleTouchStart($event)" (touchend)="handleTouchEnd($event, 'category')">
-          <div class="flex transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]"
-            [style.transform]="'translateX(' + getTranslateX(currentCategoryIndex) + '%)'">
-            @for (cat of categories; track cat.name; let i = $index) {
+          <div class="flex"
+            [style.transition]="isCategoryTransitioning ? 'all 1.2s cubic-bezier(0.19, 1, 0.22, 1)' : 'none'"
+            [style.transform]="'translate3d(' + getTranslateX(currentCategoryIndex) + '%, 0, 0)'"
+            style="will-change: transform;">
+            @for (cat of categories.concat(categories); track $index) {
             <a [routerLink]="['/products', cat.name]" class="w-[45%] sm:w-1/2 lg:w-1/3 flex-shrink-0 px-2 md:px-4">
               <div
                 class="group relative aspect-[2/3.5] sm:aspect-[3/4.5] overflow-hidden rounded-2xl md:rounded-[2rem] bg-white shadow-lg md:shadow-xl border border-gray-100">
@@ -243,19 +251,21 @@
       <div class="relative px-4 md:px-12">
         <!-- Slider Viewport -->
         <div class="overflow-hidden cursor-grab active:cursor-grabbing" (touchstart)="handleTouchStart($event)" (touchend)="handleTouchEnd($event, 'product')">
-          <div class="flex transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]"
-            [style.transform]="'translateX(' + getTranslateX(currentProductIndex) + '%)'">
-            @for (product of topProducts; track product.name) {
+          <div class="flex"
+            [style.transition]="isProductTransitioning ? 'all 1.2s cubic-bezier(0.19, 1, 0.22, 1)' : 'none'"
+            [style.transform]="'translate3d(' + getTranslateX(currentProductIndex) + '%, 0, 0)'"
+            style="will-change: transform;">
+            @for (product of topProducts.concat(topProducts); track $index) {
             <div class="w-[45%] sm:w-1/2 lg:w-1/3 flex-shrink-0 px-2 md:px-4">
               <div
                 class="group bg-white p-4 md:p-8 rounded-2xl md:rounded-[2rem] shadow-sm border border-gray-100 hover:shadow-2xl hover:shadow-black/5 transition-all duration-500 h-full flex flex-col">
                 <div
-                  class="relative aspect-[4/3] sm:aspect-square mb-4 md:mb-8 p-2 md:p-6 overflow-hidden bg-gray-50 rounded-xl md:rounded-2xl">
+                  class="relative aspect-[4/3] sm:aspect-square mb-4 md:mb-8 p-1.5 md:p-4 bg-gray-50 rounded-xl md:rounded-2xl">
                   <img [src]="product.image"
                     class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500"
                     [alt]="product.name">
                   <div
-                    class="absolute top-0 right-0 bg-red-600 text-white text-[8px] md:text-[10px] font-black uppercase tracking-widest px-2 md:px-3 py-1 rounded-full">
+                    class="absolute -top-3 right-2 bg-red-600 text-white text-[5px] md:text-[7px] font-black uppercase tracking-widest px-2 md:px-3 py-1 rounded-full shadow-lg z-10">
                     {{product.badge}}</div>
                 </div>
                 <div class="space-y-2 md:space-y-4 flex-grow flex flex-col justify-end">
@@ -510,11 +520,16 @@
       <!-- Mobile Slider (Shown only on Mobile) -->
       <div class="md:hidden relative" (touchstart)="handleTouchStart($event)" (touchend)="handleTouchEnd($event, 'leader')">
         <div class="overflow-hidden">
-          <div class="flex transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]" 
-               [style.transform]="'translateX(' + (-currentLeaderIndex * 100) + '%)'">
-            @for (member of leadership; track member.name) {
+          <div class="flex" 
+               [style.transition]="isLeaderTransitioning ? 'all 1.2s cubic-bezier(0.19, 1, 0.22, 1)' : 'none'"
+               [style.transform]="'translate3d(' + (-currentLeaderIndex * 100) + '%, 0, 0)'"
+               style="will-change: transform;">
+            @for (member of leadership.concat(leadership); track $index) {
               <div class="w-full flex-shrink-0 px-2">
-                <div class="group relative bg-white rounded-[3rem] p-4 border border-gray-100 shadow-xl">
+                <div class="p-3">
+                  <div class="group relative bg-white rounded-[3rem] p-4 border border-gray-100 shadow-xl transition-all duration-700"
+                       [class.scale-90]="(currentLeaderIndex % leadership.length) !== ($index % leadership.length)"
+                       [class.opacity-40]="(currentLeaderIndex % leadership.length) !== ($index % leadership.length)">
                   <div class="aspect-[4/5] rounded-[2.5rem] overflow-hidden relative mb-6">
                     <img [src]="member.image" class="w-full h-full object-cover" [alt]="member.name">
                     <div class="absolute inset-0 bg-gradient-to-t from-gray-950/60 via-transparent to-transparent"></div>
@@ -531,6 +546,7 @@
                   </div>
                 </div>
               </div>
+            </div>
             }
           </div>
         </div>
@@ -540,10 +556,10 @@
           @for (member of leadership; track member.name; let i = $index) {
             <button (click)="currentLeaderIndex = i" 
                     class="h-1.5 rounded-full transition-all duration-500"
-                    [class.bg-red-700]="currentLeaderIndex === i"
-                    [class.w-8]="currentLeaderIndex === i"
-                    [class.bg-gray-200]="currentLeaderIndex !== i"
-                    [class.w-3]="currentLeaderIndex !== i">
+                    [class.bg-red-700]="(currentLeaderIndex % leadership.length) === i"
+                    [class.w-8]="(currentLeaderIndex % leadership.length) === i"
+                    [class.bg-gray-200]="(currentLeaderIndex % leadership.length) !== i"
+                    [class.w-3]="(currentLeaderIndex % leadership.length) !== i">
             </button>
           }
         </div>
