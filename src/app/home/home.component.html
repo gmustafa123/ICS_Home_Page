@@ -70,6 +70,99 @@
     </div>
   </section>
 
+  <!-- Why Choose Us Section -->
+  <section class="py-20 md:py-20 bg-gray-50 relative overflow-hidden border-b border-gray-100">
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="max-w-4xl mx-auto text-center mb-16 md:mb-24">
+        <h2 class="text-red-700 font-black uppercase tracking-[0.4em] text-[10px] mb-4">The ICS Advantage</h2>
+        <h3 class="text-4xl md:text-7xl font-black text-gray-950 tracking-tighter uppercase leading-none italic mb-8">
+          Why Choose <span class="text-shine">ICS?</span>
+        </h3>
+        <p class="text-gray-500 font-medium text-base md:text-lg leading-relaxed">
+          With experience passed through three generations, the team at ICS recognise consistency, quality products, innovation, value and customer service are some of the key ingredients to any successful foodservice supplier.
+        </p>
+      </div>
+
+      <!-- Desktop Grid (Hidden on Mobile) -->
+      <div class="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        @for (item of whyChoose; track item.title) {
+          <div class="glass-card p-8 md:p-12 rounded-[2.5rem] md:rounded-[4rem] border border-gray-100 bg-white hover:-translate-y-4 hover:shadow-2xl hover:shadow-red-700/5 transition-all duration-700 group">
+            <div class="w-16 h-16 rounded-2xl bg-red-700/10 flex items-center justify-center text-red-700 text-2xl mb-10 group-hover:bg-red-700 group-hover:text-white transition-all duration-500">
+              @if (item.icon === 'service') {
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                </svg>
+              } @else if (item.icon === 'range') {
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+              } @else if (item.icon === 'coverage') {
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A2 2 0 013 15.491V6.509a2 2 0 011.123-1.791L9 2m0 18l6-3m-6 3V2m6 15l4.553 2.276A2 2 0 0022 17.509V8.509a2 2 0 00-1.123-1.791L15 2m0 15V2m0 0L9 5" />
+                </svg>
+              }
+            </div>
+            <h4 class="text-2xl font-black text-gray-950 uppercase italic mb-4">{{item.title}}</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">{{item.desc}}</p>
+          </div>
+        }
+      </div>
+
+      <!-- Mobile Slider (Shown only on Mobile) -->
+      <div class="md:hidden relative" (touchstart)="handleTouchStart($event)" (touchend)="handleTouchEnd($event)">
+        <div class="overflow-hidden">
+          <div class="flex transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]" 
+               [style.transform]="'translateX(' + (-currentWhyIndex * 100) + '%)'">
+            @for (item of whyChoose; track item.title) {
+              <div class="w-full flex-shrink-0 px-1">
+                <div class="glass-card p-3 rounded-[3rem] border border-gray-100 bg-white shadow-xl relative overflow-hidden">
+                  <div class="w-16 h-16 rounded-2xl bg-red-700 flex items-center justify-center text-white text-2xl mb-8 shadow-lg shadow-red-700/20 relative z-10">
+                    @if (item.icon === 'service') {
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                      </svg>
+                    } @else if (item.icon === 'range') {
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                      </svg>
+                    } @else if (item.icon === 'coverage') {
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A2 2 0 013 15.491V6.509a2 2 0 011.123-1.791L9 2m0 18l6-3m-6 3V2m6 15l4.553 2.276A2 2 0 0022 17.509V8.509a2 2 0 00-1.123-1.791L15 2m0 15V2m0 0L9 5" />
+                      </svg>
+                    }
+                  </div>
+                  <h4 class="text-3xl font-black text-gray-950 uppercase italic mb-6 relative z-10">{{item.title}}</h4>
+                  <p class="text-gray-600 font-medium leading-relaxed relative z-10">{{item.desc}}</p>
+                  
+                  <!-- Decorative number background -->
+                  <div class="absolute -right-10 -bottom-10 text-[15rem] font-black text-gray-50 select-none pointer-events-none opacity-50">
+                    {{$index + 1}}
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Dots Navigation -->
+        <div class="flex justify-center gap-3 mt-10">
+          @for (item of whyChoose; track item.title; let i = $index) {
+            <button (click)="currentWhyIndex = i" 
+                    class="h-2 rounded-full transition-all duration-500"
+                    [class.bg-red-700]="currentWhyIndex === i"
+                    [class.w-10]="currentWhyIndex === i"
+                    [class.bg-gray-200]="currentWhyIndex !== i"
+                    [class.w-4]="currentWhyIndex !== i">
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+    
+    <!-- Decorative background elements -->
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-red-700/5 -skew-x-12 translate-x-1/2 opacity-20 pointer-events-none"></div>
+  </section>
+
   <!-- Categories Slider -->
   <section class="py-20 md:py-32 bg-white relative">
     <div class="container mx-auto px-6">
@@ -84,7 +177,7 @@
 
       <div class="relative px-4 md:px-12">
         <!-- Slider Viewport -->
-        <div class="overflow-hidden cursor-grab active:cursor-grabbing">
+        <div class="overflow-hidden cursor-grab active:cursor-grabbing" (touchstart)="handleTouchStart($event)" (touchend)="handleTouchEnd($event, 'category')">
           <div class="flex transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]"
             [style.transform]="'translateX(' + getTranslateX(currentCategoryIndex) + '%)'">
             @for (cat of categories; track cat.name; let i = $index) {
@@ -149,7 +242,7 @@
       <!-- Slider Area with Side Controls -->
       <div class="relative px-4 md:px-12">
         <!-- Slider Viewport -->
-        <div class="overflow-hidden cursor-grab active:cursor-grabbing">
+        <div class="overflow-hidden cursor-grab active:cursor-grabbing" (touchstart)="handleTouchStart($event)" (touchend)="handleTouchEnd($event, 'product')">
           <div class="flex transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]"
             [style.transform]="'translateX(' + getTranslateX(currentProductIndex) + '%)'">
             @for (product of topProducts; track product.name) {
@@ -373,3 +466,91 @@
     </div>
   </div>
   }
+
+  <!-- Leadership Team Section -->
+  <section class="py-20 md:py-40 bg-white overflow-hidden relative border-t border-gray-50">
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-12 mb-20 md:mb-32 text-center lg:text-left">
+        <div>
+          <h2 class="text-red-700 font-black uppercase tracking-[0.4em] text-[10px] mb-4">Board of Directors</h2>
+          <h3 class="text-4xl md:text-8xl font-black text-gray-950 tracking-tighter uppercase leading-[0.9] italic">
+            Our <span class="text-shine">Leadership</span>
+          </h3>
+        </div>
+        <p class="text-gray-500 font-medium text-base md:text-lg max-w-sm">
+          A team of visionary experts dedicated to revolutionizing the foodservice supply chain across Europe.
+        </p>
+      </div>
+
+      <!-- Desktop Grid (Hidden on Mobile) -->
+      <div class="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+        @for (member of leadership; track member.name) {
+          <div class="group relative fade-in-up">
+            <div class="aspect-[4/5] rounded-[3rem] overflow-hidden border-2 border-gray-100 shadow-xl transition-all duration-700 hover:shadow-2xl hover:shadow-red-700/20 mb-8 p-1">
+              <div class="w-full h-full rounded-[2.8rem] overflow-hidden relative">
+                <img [src]="member.image" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" [alt]="member.name">
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                
+                <!-- Social Tags -->
+                <div class="absolute bottom-8 left-8 flex gap-4 transform translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
+                  <div class="w-10 h-10 rounded-full border border-white/20 backdrop-blur-md flex items-center justify-center text-white text-[10px] font-bold hover:bg-red-700 transition-colors pointer-events-auto">IN</div>
+                  <div class="w-10 h-10 rounded-full border border-white/20 backdrop-blur-md flex items-center justify-center text-white text-[10px] font-bold hover:bg-red-700 transition-colors pointer-events-auto">TW</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="text-center lg:text-left space-y-2">
+              <h4 class="text-2xl font-black text-gray-950 uppercase italic leading-none group-hover:text-red-700 transition-colors">{{member.name}}</h4>
+              <p class="text-[9px] font-black text-gray-400 uppercase tracking-[0.3em]">{{member.role}}</p>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Mobile Slider (Shown only on Mobile) -->
+      <div class="md:hidden relative" (touchstart)="handleTouchStart($event)" (touchend)="handleTouchEnd($event, 'leader')">
+        <div class="overflow-hidden">
+          <div class="flex transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]" 
+               [style.transform]="'translateX(' + (-currentLeaderIndex * 100) + '%)'">
+            @for (member of leadership; track member.name) {
+              <div class="w-full flex-shrink-0 px-2">
+                <div class="group relative bg-white rounded-[3rem] p-4 border border-gray-100 shadow-xl">
+                  <div class="aspect-[4/5] rounded-[2.5rem] overflow-hidden relative mb-6">
+                    <img [src]="member.image" class="w-full h-full object-cover" [alt]="member.name">
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-950/60 via-transparent to-transparent"></div>
+                    
+                    <div class="absolute bottom-6 left-6 flex gap-3">
+                      <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-[10px] font-black">IN</div>
+                      <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-[10px] font-black">TW</div>
+                    </div>
+                  </div>
+                  
+                  <div class="text-center pb-4">
+                    <h4 class="text-3xl font-black text-gray-950 uppercase italic leading-none mb-2">{{member.name}}</h4>
+                    <p class="text-[10px] font-black text-red-700 uppercase tracking-[0.3em]">{{member.role}}</p>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="flex justify-center gap-2 mt-10">
+          @for (member of leadership; track member.name; let i = $index) {
+            <button (click)="currentLeaderIndex = i" 
+                    class="h-1.5 rounded-full transition-all duration-500"
+                    [class.bg-red-700]="currentLeaderIndex === i"
+                    [class.w-8]="currentLeaderIndex === i"
+                    [class.bg-gray-200]="currentLeaderIndex !== i"
+                    [class.w-3]="currentLeaderIndex !== i">
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Decorative elements -->
+    <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-red-700/5 rounded-full blur-3xl"></div>
+    <div class="absolute -top-20 -right-20 w-80 h-80 bg-gray-100 rounded-full blur-3xl"></div>
+  </section>

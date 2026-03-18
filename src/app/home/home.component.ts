@@ -126,4 +126,74 @@ export class HomeComponent implements OnInit {
     { name: 'EAZI KLEAN SPRAY', category: 'Cleaning', quantity: '6 x 750ml', image: 'assets/images/media__1773747433900.png', badge: 'Eco' },
     { name: 'DOUBLE LUCKY RICE', category: 'Ambient', quantity: '20kg Bag', image: 'assets/images/media__1773747433910.png', badge: 'Bulk' }
   ];
+
+  leadership = [
+    { name: 'Michael Thompson', role: 'Chief Executive Officer', image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&h=500&auto=format&fit=crop' },
+    { name: 'Sarah Chen', role: 'Operations Director', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&h=500&auto=format&fit=crop' },
+    { name: 'David Rodriguez', role: 'Supply Chain Head', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&h=500&auto=format&fit=crop' },
+    { name: 'Emily Watson', role: 'Strategic Partnerships', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&h=500&auto=format&fit=crop' }
+  ];
+
+  currentLeaderIndex = 0;
+  nextLeader() {
+    this.currentLeaderIndex = (this.currentLeaderIndex + 1) % this.leadership.length;
+  }
+
+  prevLeader() {
+    this.currentLeaderIndex = (this.currentLeaderIndex - 1 + this.leadership.length) % this.leadership.length;
+  }
+
+  currentWhyIndex = 0;
+  whyChoose = [
+    { 
+      title: 'Customer Service', 
+      desc: 'Our dedicated customer service team are on hand to help. With extensive product knowledge across our ranges, they can assist with finding the right product for your business and budget. We pride ourselves with delivering customer satisfaction.',
+      icon: 'service'
+    },
+    { 
+      title: 'Product Ranges', 
+      desc: 'At ICS we stock more than 4000 catering and packaging products delivering a complete catering solution to the food industry. Our portfolio consists of more than 600 tried and tested products.',
+      icon: 'range'
+    },
+    { 
+      title: 'UK Coverage', 
+      desc: 'Our reliable distribution network consists of more than 25 of our own temperature-controlled trucks in addition to our trusted haulage partners throughout UK and Europe.',
+      icon: 'coverage'
+    }
+  ];
+
+  nextWhy() {
+    this.currentWhyIndex = (this.currentWhyIndex + 1) % this.whyChoose.length;
+  }
+
+  prevWhy() {
+    this.currentWhyIndex = (this.currentWhyIndex - 1 + this.whyChoose.length) % this.whyChoose.length;
+  }
+
+  touchStartX = 0;
+  touchEndX = 0;
+
+  handleTouchStart(event: TouchEvent) {
+    this.touchStartX = event.changedTouches[0].screenX;
+  }
+
+  handleTouchEnd(event: TouchEvent, context: string = 'why') {
+    this.touchEndX = event.changedTouches[0].screenX;
+    this.handleSwipe(context);
+  }
+
+  handleSwipe(context: string) {
+    const swipeThreshold = 50;
+    if (this.touchStartX - this.touchEndX > swipeThreshold) {
+      if (context === 'why') this.nextWhy();
+      if (context === 'leader') this.nextLeader();
+      if (context === 'category') this.nextCategory();
+      if (context === 'product') this.nextProduct();
+    } else if (this.touchEndX - this.touchStartX > swipeThreshold) {
+      if (context === 'why') this.prevWhy();
+      if (context === 'leader') this.prevLeader();
+      if (context === 'category') this.prevCategory();
+      if (context === 'product') this.prevProduct();
+    }
+  }
 }

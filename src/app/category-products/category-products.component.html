@@ -1,5 +1,5 @@
 <div class="pt-32 pb-20 bg-gray-50 min-h-screen">
-  <div class="container mx-auto px-6">
+  <div class="container mx-auto px-4 sm:px-6">
     <!-- Breadcrumb & Title -->
     <div class="mb-12">
       <div class="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-4">
@@ -45,23 +45,23 @@
 
       <!-- Products Grid -->
       <div class="flex-1">
-        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div class="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-4 gap-1 sm:gap-2">
           @for (product of (filteredProducts$ | async); track product['Product Name']) {
-          <div class="group bg-white p-6 rounded-[2rem] shadow-sm border border-gray-100 hover:shadow-2xl hover:shadow-red-700/5 transition-all duration-500 flex flex-col h-full">
-            <div class="relative aspect-square mb-6 p-6 overflow-hidden bg-gray-50 rounded-[1.5rem]">
+          <div class="group bg-white p-3 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] shadow-sm border border-gray-100 hover:shadow-2xl hover:shadow-red-700/5 transition-all duration-500 flex flex-col h-full">
+            <div class="relative aspect-square mb-3 sm:mb-6 pt-8 p-3 sm:p-6 overflow-hidden bg-gray-50 rounded-[1rem] sm:rounded-[1.5rem]">
               <img 
                 [src]="product['Product Image Url']" 
                 class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700" 
                 [alt]="product['Product Name']"
               >
-              <div class="absolute top-4 left-4 flex gap-2">
-                <span class="bg-white/90 backdrop-blur-md text-gray-950 text-[8px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full border border-black/5 shadow-sm">
+              <div class="absolute top-1.5 sm:top-4 left-1.5 sm:left-4 flex gap-1 sm:gap-2 z-10">
+                <span class="bg-white/95 backdrop-blur-md text-gray-950 text-[6px] sm:text-[8px] font-black uppercase tracking-widest px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-full border border-black/5 shadow-sm">
                   {{product['pack size']}}
                 </span>
               </div>
             </div>
 
-            <div class="space-y-4 flex-grow flex flex-col">
+            <div class="space-y-2 sm:space-y-4 flex-grow flex flex-col">
               <div class="flex items-center justify-between">
                 <div class="text-[8px] font-black text-gray-400 uppercase tracking-widest">{{product['Delivery type'] || 'General'}}</div>
                 <!-- Rating Stars -->
@@ -79,26 +79,25 @@
                 </div>
               </div>
 
-              <h4 class="text-sm font-black text-gray-950 leading-tight uppercase italic min-h-[2.5rem]">
+              <h4 class="text-[10px] sm:text-sm font-black text-gray-950 leading-tight uppercase italic min-h-[2rem] sm:min-h-[2.5rem]">
                 {{product['Product Name']}}
               </h4>
               
-              <div class="pt-4 mt-auto border-t border-gray-50 flex items-center justify-between gap-4">
-                <div class="flex-shrink-0">
-                  <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest block mb-1">Our Price</span>
-                  <div class="text-xl font-black text-red-700 leading-none">{{product['Price'] || 'Enquire'}}</div>
-                </div>
-                
-                <div class="flex items-center gap-2 flex-grow justify-end">
-                  <button class="flex-1 py-3 px-4 bg-gray-950 text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-red-700 transition-all shadow-lg active:scale-95 text-center">
-                    Buy Now
-                  </button>
-                  <button class="w-10 h-10 rounded-xl border border-gray-200 text-gray-400 flex items-center justify-center hover:bg-gray-50 hover:text-red-700 transition-all active:scale-90">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                    </svg>
-                  </button>
-                </div>
+              <!-- Price moved above -->
+              <div class="mt-auto pt-0">
+                <span class="text-[8px] sm:text-[9px] font-black text-gray-400 uppercase tracking-widest block mb-1">Our Price</span>
+                <div class="text-sm sm:text-xl font-black text-red-700 leading-none">{{product['Price'] || 'Enquire'}}</div>
+              </div>
+
+              <div class="pt-1 sm:pt-2 border-t border-gray-50 flex items-center gap-1 sm:gap-2">
+                <button class="flex-1 py-2 sm:py-3 px-2 sm:px-4 bg-gray-950 text-white text-[8px] sm:text-[10px] font-black uppercase tracking-widest rounded-lg sm:rounded-xl hover:bg-red-700 transition-all shadow-lg active:scale-95 text-center">
+                  Buy Now
+                </button>
+                <button class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl border border-gray-200 text-gray-400 flex items-center justify-center hover:bg-gray-50 hover:text-red-700 transition-all active:scale-90">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                  </svg>
+                </button>
               </div>
             </div>
           </div>

@@ -30,8 +30,6 @@ export class ProductService {
   private categoriesMap: Category[] = [
     { name: 'Drinks', fileName: 'Drinks.json', image: 'https://cater-choice-assets.s3.eu-west-2.amazonaws.com/storage/images/product/202312151702630679061168906756898800015043.jpg' },
     { name: 'Bakery', fileName: 'real-bakery.json', image: 'https://cater-choice-assets.s3.eu-west-2.amazonaws.com/storage/images/product/202509231758642713550DSC06131.jpg' },
-    { name: 'Appetizers & Sides', fileName: 'Appetizers and sides.json', image: 'https://cater-choice-assets.s3.eu-west-2.amazonaws.com/storage/images/product/202509221758540493675DSC06176.jpg' },
-    { name: 'Breading & Batter', fileName: 'Breading&Batter.json', image: 'https://cater-choice-assets.s3.eu-west-2.amazonaws.com/storage/images/product/202508121754987800375DSC04779.jpg' },
     { name: 'Burger', fileName: 'Burger.json', image: 'https://cater-choice-assets.s3.eu-west-2.amazonaws.com/storage/images/product/202509231758637697310DSC00113.jpg' },
     { name: 'Chicken & Poultry', fileName: 'Chicken and Poultry.json', image: 'https://cater-choice-assets.s3.eu-west-2.amazonaws.com/storage/images/product/202507091752072275999DSC06581.jpg' },
     { name: 'Cooking Ingredients', fileName: 'Cooking Ingredients.json', image: 'https://cater-choice-assets.s3.eu-west-2.amazonaws.com/storage/images/product/202508131755083524502DSC06667.jpg' },

@@ -1,0 +1,41 @@
+:host {
+  display: block;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fade-in-up 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 400ms; }
+
+select option {
+  background: #000;
+  color: white;
+  padding: 1rem;
+}
+
+.shadow-3xl {
+  box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.5);
+}
+
+input::placeholder {
+  font-weight: 400;
+  opacity: 0.3;
+}
+
+/* Fix for standard select appearance */
+select {
+  background-image: none;
+}
